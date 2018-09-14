@@ -1,7 +1,7 @@
 <template>
 
   <div class="image-dialog">
-    <div class="image-dialog-trigger" type="button" @click="showDialog">
+    <div class="image-dialog-trigger" :class="loaded==true?'hidden':''" type="button" @click="showDialog">
         <div ref="thumb" class="input-wrapper">
             <div class="input"  >
                 <i class="iconfont icon-search1187938easyiconnet"></i>
@@ -29,7 +29,7 @@
                 {{keyword.length>0?'搜索':'取消'}}
             </div>
         </div>
-        <div :class="loaded?'visible':''" class="slot-content" >
+        <div :class="slotVisiable?'visible':''" class="slot-content" >
             <slot></slot>
         </div>
       </div>
@@ -60,6 +60,7 @@ export default {
   data() {
     return {
       loaded: false,
+      slotVisiable:false,
       appearedDialog: false,
       fullWidth: 0,
       fullHeight: 0,
@@ -156,12 +157,16 @@ export default {
       this.animateImage(this.$refs.thumb, this.$refs.full,this.$refs.cancleBtn,1);
       setTimeout(()=>{
           this.loaded=true;
-      },600)
+          this.slotVisiable=true;
+      },300)
     },
 
     leave() {
       this.animateImage(this.$refs.full, this.$refs.thumb,this.$refs.cancleBtn,0);
-      this.loaded=false;
+      this.slotVisiable=false;
+        setTimeout(()=>{
+            this.loaded=false;
+        },300)
     },
 
     onLoadFull() {
@@ -227,6 +232,7 @@ export default {
       }else{
           //start.width=start.width-gapEl.width;
           //dest.width=dest.width-gapEl.width;
+         // dest.width=start.width;
       }
       
 
@@ -253,7 +259,9 @@ export default {
 
   .image-dialog-trigger {
     width: 100%;
-
+    &.hidden{
+      opacity: 0;
+    }
   }
 
     .slot-content{

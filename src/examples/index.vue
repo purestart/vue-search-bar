@@ -69,6 +69,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.test{
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display:-webkit-box;
+
+  justify-content:space-around;
+  box-pack:space-around;
+  -webkit--moz-box-pack:space-around;
+  -moz-box-pack:space-around;
+  -webkit-justify-content:space-around;
+
+  flex:1;
+  -webkit-flex:1;
+  -moz-box-flex:1;
+  -webkit-box-flex:1;
+  box-flex:1;
+
+
+  flex-wrap:wrap;
+  -moz-flex-wrap:wrap;
+  -webkit-box-lines:multiple;
+  -webkit-flex-wrap:wrap;
+
+}
+
 .tab {
   text-align: center;
   padding: 10px;
@@ -102,6 +130,7 @@ export default {
       justify-content: space-between;
       flex-direction: column;
       padding: 1vw 0;
+      
     }
   }
 
